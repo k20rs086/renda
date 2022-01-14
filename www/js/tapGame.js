@@ -13,7 +13,7 @@
 // mBaaSの初期化
 var ncmb = new NCMB(this.APPLICATION_KEY, this.CLIENT_KEY);
 // タイマー設定
-var countTimer = 13;
+var countTimer = 23;
 // タップ回数カウンター
 var counter = 0;
 // 「tapFlag」的のタップ可否設定
@@ -29,7 +29,7 @@ function startGame() {
     this.counter = 0;
     $("#list-page strong").html(String(0));
     // タイマーリセット
-    this.countTimer = 13;
+    this.countTimer = 23;
     // タイマーを起動
     countTime(countTimer);
 }
@@ -67,10 +67,10 @@ function saveScore (name, score) {
 // タイマー
 function countTime(time) {
     if (time > 0){
-        if (time >= 11) {
+        if (time >= 21) {
             this.tapFlag = false;
-            $("#list-page p").html(String(time-10));
-        } else if (time == 10) {
+            $("#list-page p").html(String(time-20));
+        } else if (time == 20) {
             this.tapFlag = true;
             $("#list-page p").html("スタート！");
         } else {
@@ -105,8 +105,16 @@ function imputName(count){
 
 // タップ数カウント
 function tapCount() {
+  console.log("a"+countTimer);
+    if (tapFlag&&countTimer%2==1) {
+        this.counter -= 1;
+        $("#list-page strong").html(String(this.counter));
+
+    }else{
+      console.log("b"+countTimer);
     if (tapFlag) {
         this.counter += 1;
         $("#list-page strong").html(String(this.counter));
+    }
     }
 }
